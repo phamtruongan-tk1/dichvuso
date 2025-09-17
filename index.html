@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nâng cấp ChatGPT Plus | Dịch vụ chính chủ</title>
+  <meta name="description" content="Dịch vụ nâng cấp ChatGPT Plus chính chủ — dùng trên tài khoản ChatGPT & Gmail của bạn. Thanh toán sau khi nâng cấp. Hỗ trợ nhanh, bảo hành." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Nâng cấp ChatGPT Plus | Dịch vụ chính chủ" />
+  <meta property="og:description" content="Nâng cấp trực tiếp trên tài khoản của bạn. Hỗ trợ nhanh, bảo hành rõ ràng." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#0f172a;
+      --text:#e5e7eb;
+      --muted:#a5b4fc;
+      --brand:#22d3ee;
+      --accent:#38bdf8;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #0ea5e930, transparent 60%),
+                  radial-gradient(1000px 600px at 110% 10%, #38bdf820, transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{width:min(1120px, 92vw); margin:0 auto}
+
+    /* Header */
+    header{position:sticky; top:0; backdrop-filter: blur(8px); background:rgba(11,16,32,0.6); border-bottom:1px solid #1f2937; z-index:50}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px}
+    .logo{width:36px; height:36px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(135deg,var(--brand),var(--accent)); box-shadow:var(--shadow);}
+    .nav a.btn{padding:10px 16px; border:1px solid #1f334d; border-radius:12px; transition:.2s; font-weight:600}
+    .nav a.btn:hover{transform:translateY(-1px); border-color:#2c4a77}
+
+    /* Hero */
+    .hero{padding:72px 0 36px}
+    .hero-inner{display:grid; grid-template-columns: 1.2fr .8fr; gap:28px}
+    .badge{display:inline-flex; align-items:center; gap:10px; padding:6px 12px; border-radius:999px; background:rgba(34,211,238,.12); border:1px solid rgba(56,189,248,.25); color:#d1fbff; font-weight:600}
+    .title{font-size: clamp(28px, 4.2vw, 54px); line-height:1.1; margin:16px 0 10px; font-weight:800}
+    .subtitle{color:#c7d2fe; font-weight:500; font-size:clamp(15px,1.6vw,18px)}
+    .cta{display:flex; gap:12px; margin-top:22px; flex-wrap:wrap}
+    .btn{padding:14px 18px; border-radius:14px; font-weight:700; border:1px solid transparent; cursor:pointer; transition:.2s; display:inline-flex; align-items:center; gap:10px}
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--accent)); color:#0b1020}
+    .btn-primary:hover{filter:brightness(1.05); transform:translateY(-1px)}
+    .btn-ghost{background:rgba(59,130,246,.08); border-color:#1f334d}
+    .btn-ghost:hover{background:rgba(59,130,246,.15)}
+
+    .hero-card{background:linear-gradient(180deg, #0b1328 0%, #0a1224 100%); border:1px solid #1f2937; padding:24px; border-radius:var(--radius); box-shadow:var(--shadow)}
+
+    /* Sections */
+    section{padding:56px 0}
+    .grid{display:grid; gap:18px}
+
+    /* Features / Steps / Pricing card base + hover */
+    .card{
+      background:var(--card); border:1px solid #1f2937; border-radius:var(--radius);
+      padding:22px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+    }
+    .card::after{content:""; position:absolute; inset:-1px;
+      background:radial-gradient(220px 120px at 80% -20%, rgba(56,189,248,.22), transparent 60%),
+                 radial-gradient(220px 120px at -10% 120%, rgba(34,211,238,.18), transparent 60%);
+      opacity:.0; transition:opacity .22s ease; pointer-events:none}
+    .card:hover{transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,.5); border-color:rgba(56,189,248,.55); background:linear-gradient(180deg, #0b1328 0%, #0a1224 100%)}
+    .card:hover::after{opacity:1}
+    .icon{width:42px; height:42px; border-radius:12px; display:grid; place-items:center; background:rgba(34,211,238,.18); transition:transform .22s ease}
+    .card:hover .icon{transform:scale(1.06) translateY(-2px)}
+
+    /* Grids */
+    .features{grid-template-columns: repeat(3, 1fr)}
+    .steps{grid-template-columns: repeat(4, 1fr)}
+    .pricing{grid-template-columns: repeat(3, 1fr)}
+    .price{display:flex; align-items:flex-end; gap:6px; margin:10px 0}
+    .price .big{font-size:38px; font-weight:800}
+    .price .per{color:#c7d2fe}
+    .pill{display:inline-block; padding:6px 10px; border:1px solid #1f2937; background:#0e172a; border-radius:999px; font-weight:600; color:#c7d2fe}
+    .best{outline:2px solid rgba(56,189,248,.35)}
+
+    /* FAQ */
+    details{background:#0d1429; border:1px solid #1f2937; border-radius:12px; padding:14px 16px}
+    summary{cursor:pointer; font-weight:700}
+    details p{color:#dbeafe}
+
+    /* Footer */
+    footer{padding:36px 0 56px; border-top:1px solid #1f2937; color:#cbd5e1}
+
+    /* FLOATING CONTACT (Zalo/Messenger) */
+    .floating-contact {
+      position: fixed; right: 18px; bottom: 18px;
+      display: flex; flex-direction: column; gap: 12px; z-index: 9999;
+    }
+    .floating-contact a{
+      display:flex; align-items:center; gap:10px;
+      background:linear-gradient(135deg,var(--brand),var(--accent));
+      color:#0b1020; font-weight:800; padding:14px 18px; border-radius:999px;
+      box-shadow:0 8px 22px rgba(0,0,0,.45);
+      transition:transform .15s ease, box-shadow .15s ease;
+      animation: pulse 2.2s infinite; letter-spacing:.2px;
+    }
+    .floating-contact a:hover{transform:translateY(-2px) scale(1.04); box-shadow:0 12px 26px rgba(0,0,0,.55)}
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(56,189,248,.6)}
+      70%{box-shadow:0 0 0 12px rgba(56,189,248,0)}
+      100%{box-shadow:0 0 0 0 rgba(56,189,248,0)}
+    }
+
+    /* SCROLL REVEAL (slide-in left/right) */
+    .reveal-base{opacity:0; will-change: transform, opacity}
+    .reveal-left{transform:translateX(-60px)}
+    .reveal-right{transform:translateX(60px)}
+    .reveal-up{transform:translateY(40px)}
+    .visible{opacity:1; transform:translateX(0) translateY(0); transition:transform .65s cubic-bezier(.2,.8,.2,1), opacity .65s ease}
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero-inner{grid-template-columns: 1fr}
+      .features{grid-template-columns: repeat(2, 1fr)}
+      .pricing{grid-template-columns: repeat(2, 1fr)}
+      .steps{grid-template-columns: repeat(2, 1fr)}
+    }
+    @media (max-width: 620px){
+      .features,.pricing,.steps{grid-template-columns: 1fr}
+      .nav a.hide-sm{display:none}
+      .floating-contact a{padding:12px 14px; font-size:14px}
+    }
+
+    /* Form controls */
+    label{display:block; font-weight:600; margin:10px 0 6px}
+    .in{width:100%; background:#0b1328; border:1px solid #20304a; color:#e5e7eb; padding:12px 12px; border-radius:12px; outline:none}
+    .in:focus{border-color:#38bdf8; box-shadow:0 0 0 3px rgba(56,189,248,.2)}
+    textarea.in{resize:vertical}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Trang chủ">
+        <span class="logo">★</span>
+        <span>Dịch vụ ChatGPT Plus</span>
+      </a>
+      <nav>
+        <a class="btn hide-sm" href="#features">Tính năng</a>
+        <a class="btn hide-sm" href="#pricing">Bảng giá</a>
+        <a class="btn hide-sm" href="#faq">FAQ</a>
+        <a class="btn btn-primary" href="#contact">Liên hệ ngay</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="container hero-inner">
+      <div class="reveal-base reveal-left">
+        <span class="badge">Nâng cấp trực tiếp • Chính chủ • Bảo hành</span>
+        <h1 class="title">Nâng cấp tài khoản <span style="background:linear-gradient(135deg,var(--brand),var(--accent)); -webkit-background-clip:text; background-clip:text; color:transparent">ChatGPT Plus</span> cho chính tài khoản của bạn</h1>
+        <p class="subtitle">Không bán tài khoản lạ. Chúng tôi nâng cấp trực tiếp trên tài khoản ChatGPT/Gmail của <strong>bạn</strong>, hỗ trợ nhanh, uy tín, hoá đơn rõ ràng.</p>
+        <div class="cta">
+          <a href="#pricing" class="btn btn-primary">Xem bảng giá</a>
+          <a href="#how" class="btn btn-ghost">Quy trình hoạt động</a>
+        </div>
+        <div style="display:flex; gap:12px; margin-top:18px; flex-wrap:wrap">
+          <span class="pill">Thanh toán sau khi nâng cấp</span>
+          <span class="pill">Hỗ trợ 7 ngày/tuần</span>
+          <span class="pill">Hoàn tiền nếu không thành công</span>
+        </div>
+      </div>
+      <aside class="hero-card reveal-base reveal-right" aria-label="Điểm nổi bật">
+        <h3 style="margin-top:0">Vì sao nên chọn chúng tôi?</h3>
+        <div class="check"><i>✓</i> Chính chủ: dùng trên tài khoản của bạn</div>
+        <div class="check"><i>✓</i> Nhanh chóng: xử lý trong khung giờ làm việc</div>
+        <div class="check"><i>✓</i> Bảo hành & hỗ trợ kỹ thuật rõ ràng</div>
+        <div class="check"><i>✓</i> Giá cạnh tranh, minh bạch</div>
+        <div class="check"><i>✓</i> Hướng dẫn an toàn, bảo mật thông tin</div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features">
+    <div class="container">
+      <h2 style="margin:0 0 12px; font-size:28px" class="reveal-base reveal-left">Tính năng nổi bật</h2>
+      <p style="color:#c7d2fe; margin-top:0" class="reveal-base reveal-left">Những gì bạn nhận được khi nâng cấp ChatGPT Plus.</p>
+      <div class="grid features" role="list">
+        <article class="card reveal-base reveal-left" role="listitem">
+          <div class="icon">⚡</div>
+          <h3>Tốc độ ưu tiên</h3>
+          <p>Truy cập ổn định vào các model mới, thời gian phản hồi nhanh hơn, ít giới hạn giờ cao điểm.</p>
+        </article>
+        <article class="card reveal-base reveal-up" role="listitem">
+          <div class="icon">🧠</div>
+          <h3>Model mạnh hơn</h3>
+          <p>Trải nghiệm các khả năng nâng cao để viết, phân tích dữ liệu, hỗ trợ công việc hiệu quả.</p>
+        </article>
+        <article class="card reveal-base reveal-right" role="listitem">
+          <div class="icon">🔒</div>
+          <h3>Bảo mật & riêng tư</h3>
+          <p>Quy trình từng bước, không yêu cầu mật khẩu email của bạn. Bạn kiểm soát toàn bộ.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <div class="container">
+      <h2 style="margin:0 0 12px; font-size:28px" class="reveal-base reveal-left">Quy trình hoạt động</h2>
+      <p style="color:#c7d2fe; margin-top:0" class="reveal-base reveal-left">Đơn giản trong 4 bước.</p>
+      <div class="grid steps">
+        <div class="card step reveal-base reveal-left">
+          <div class="num" style="width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:rgba(56,189,248,.25);color:#e0f2fe;font-weight:800;margin-bottom:10px">1</div>
+          <h3>Liên hệ & tư vấn</h3>
+          <p>Gửi yêu cầu qua form bên dưới hoặc Zalo/Telegram. Chúng tôi tư vấn gói phù hợp.</p>
+        </div>
+        <div class="card step reveal-base reveal-up">
+          <div class="num" style="width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:rgba(56,189,248,.25);color:#e0f2fe;font-weight:800;margin-bottom:10px">2</div>
+          <h3>Xác nhận tài khoản</h3>
+          <p>Bạn đăng nhập ChatGPT trên trình duyệt của mình; chúng tôi hướng dẫn thao tác an toàn.</p>
+        </div>
+        <div class="card step reveal-base reveal-up">
+          <div class="num" style="width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:rgba(56,189,248,.25);color:#e0f2fe;font-weight:800;margin-bottom:10px">3</div>
+          <h3>Tiến hành nâng cấp</h3>
+          <p>Thực hiện nâng cấp trực tiếp trên tài khoản của bạn. Theo dõi trạng thái realtime.</p>
+        </div>
+        <div class="card step reveal-base reveal-right">
+          <div class="num" style="width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:rgba(56,189,248,.25);color:#e0f2fe;font-weight:800;margin-bottom:10px">4</div>
+          <h3>Thanh toán & bảo hành</h3>
+          <p>Chỉ thanh toán khi thành công. Bảo hành trong suốt thời gian gói dịch vụ.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="container">
+      <h2 style="margin:0 0 12px; font-size:28px" class="reveal-base reveal-left">Bảng giá tham khảo</h2>
+      <p style="color:#c7d2fe; margin-top:0" class="reveal-base reveal-left">Giá có thể thay đổi theo thời điểm khuyến mãi. Liên hệ để có giá tốt nhất.</p>
+      <div class="grid pricing">
+        <article class="card reveal-base reveal-left">
+          <span class="pill">Dùng thử</span>
+          <h3>1 tháng</h3>
+          <div class="price"><span class="big">69k</span><span class="per">/tháng</span></div>
+          <ul style="padding-left:18px; color:#cdd5f6">
+            <li>Nâng cấp chính chủ</li>
+            <li>Hỗ trợ cơ bản</li>
+            <li>Thanh toán sau khi thành công</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost" style="width:100%; justify-content:center">Đăng ký</a>
+        </article>
+        <article class="card best reveal-base reveal-up">
+          <span class="pill" style="background:rgba(34,211,238,.14); border-color:rgba(56,189,248,.4)">Khuyến nghị</span>
+          <h3>3 tháng</h3>
+          <div class="price"><span class="big">149k</span><span class="per">/3 tháng</span></div>
+          <ul style="padding-left:18px; color:#cdd5f6">
+            <li>Ưu tiên xử lý</li>
+            <li>Bảo hành theo gói</li>
+            <li>Hỗ trợ kỹ thuật 1-1</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" style="width:100%; justify-content:center">Đăng ký ngay</a>
+        </article>
+        <article class="card reveal-base reveal-right">
+          <span class="pill">Doanh nghiệp</span>
+          <h3>Tuỳ chỉnh</h3>
+          <div class="price"><span class="big">Liên hệ</span></div>
+          <ul style="padding-left:18px; color:#cdd5f6">
+            <li>Nâng cấp số lượng lớn</li>
+            <li>Hoá đơn & hợp đồng</li>
+            <li>Hỗ trợ tích hợp quy trình</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost" style="width:100%; justify-content:center">Nhận báo giá</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust badges -->
+  <section>
+    <div class="container grid" style="grid-template-columns: repeat(3,1fr); gap:14px">
+      <div class="card reveal-base reveal-left" style="display:flex; align-items:center; gap:12px"><span class="icon">🕒</span><div><strong>Xử lý nhanh</strong><br><span style="color:#c7d2fe">Trong giờ làm việc</span></div></div>
+      <div class="card reveal-base reveal-up" style="display:flex; align-items:center; gap:12px"><span class="icon">🧾</span><div><strong>Minh bạch</strong><br><span style="color:#c7d2fe">Hoá đơn rõ ràng</span></div></div>
+      <div class="card reveal-base reveal-right" style="display:flex; align-items:center; gap:12px"><span class="icon">🤝</span><div><strong>Hỗ trợ tận tâm</strong><br><span style="color:#c7d2fe">7 ngày/tuần</span></div></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container">
+      <h2 style="margin:0 0 12px; font-size:28px" class="reveal-base reveal-left">Câu hỏi thường gặp</h2>
+      <div class="grid" style="grid-template-columns:1fr; gap:12px">
+        <details class="reveal-base reveal-left">
+          <summary>Tài khoản có phải chính chủ không?</summary>
+          <p>Có. Chúng tôi nâng cấp trực tiếp trên tài khoản ChatGPT của bạn, không bán tài khoản sẵn.</p>
+        </details>
+        <details class="reveal-base reveal-up">
+          <summary>Tôi có cần cung cấp mật khẩu Gmail không?</summary>
+          <p>Không. Bạn đăng nhập trên thiết bị của bạn. Chúng tôi chỉ hướng dẫn thao tác cần thiết.</p>
+        </details>
+        <details class="reveal-base reveal-up">
+          <summary>Thanh toán khi nào?</summary>
+          <p>Bạn chỉ thanh toán sau khi trạng thái Plus hiển thị thành công trong tài khoản của bạn.</p>
+        </details>
+        <details class="reveal-base reveal-right">
+          <summary>Bảo hành như thế nào?</summary>
+          <p>Trong suốt thời hạn gói, nếu Plus bị gián đoạn do lỗi quy trình, chúng tôi hỗ trợ khắc phục hoặc hoàn tiền theo thoả thuận.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="card reveal-base reveal-up" style="padding:28px">
+        <div class="grid" style="grid-template-columns:1.2fr .8fr; gap:22px">
+          <div>
+            <h2 style="margin:0 0 10px; font-size:26px">Liên hệ đăng ký</h2>
+            <p style="color:#c7d2fe">Điền thông tin, chúng tôi sẽ phản hồi nhanh trong giờ làm việc.</p>
+            <form onsubmit="event.preventDefault(); handleSubmit(this)">
+              <label>Họ & tên</label>
+              <input name="name" required placeholder="VD: Nguyễn Văn A" class="in" />
+              <label>Email hoặc Zalo/Telegram</label>
+              <input name="contact" required placeholder="VD: email@domain.com hoặc @username" class="in" />
+              <label>Gói quan tâm</label>
+              <select name="plan" class="in">
+                <option value="1m">Dùng thử 1 tháng</option>
+                <option value="3m" selected>Gói 3 tháng (khuyến nghị)</option>
+                <option value="biz">Doanh nghiệp</option>
+              </select>
+              <label>Nhu cầu chi tiết</label>
+              <textarea name="note" rows="4" placeholder="Mô tả nhanh mong muốn của bạn" class="in"></textarea>
+              <button class="btn btn-primary" type="submit" style="width:100%; justify-content:center; margin-top:10px">Gửi yêu cầu</button>
+              <p id="form-msg" style="display:none; margin-top:10px; color:#86efac">Đã nhận thông tin! Chúng tôi sẽ liên hệ sớm nhất.</p>
+            </form>
+          </div>
+          <aside>
+            <div class="card reveal-base reveal-right" style="height:100%">
+              <h3 style="margin-top:0">Thông tin liên hệ</h3>
+              <p style="color:#c7d2fe; margin:0">Zalo: <strong>0123.456.789</strong><br>Telegram: <strong>@yourhandle</strong><br>Email: <strong>support@example.com</strong></p>
+              <hr style="border-color:#1f2937; margin:16px 0">
+              <p style="color:#9ca3af; font-size:14px">Lưu ý: Đây là trang giới thiệu dịch vụ. Chúng tôi không đại diện cho OpenAI. Điều khoản sử dụng của OpenAI luôn được tôn trọng.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap">
+      <div>© <span id="year"></span> Dịch vụ ChatGPT Plus. All rights reserved.</div>
+      <div style="opacity:.8">Điều khoản • Quyền riêng tư • Hỗ trợ</div>
+    </div>
+  </footer>
+
+  <!-- Floating Zalo & Messenger (luôn hiển thị) -->
+  <div class="floating-contact" aria-label="Liên hệ nhanh">
+    <!-- THAY các link dưới bằng thông tin thật của anh -->
+    <a href="https://zalo.me/0123456789" target="_blank" rel="noopener" aria-label="Chat qua Zalo">💬 Zalo Chat</a>
+    <a href="https://m.me/yourfacebookpage" target="_blank" rel="noopener" aria-label="Nhắn tin qua Messenger">📨 Messenger</a>
+  </div>
+
+  <script>
+    // Năm hiện tại
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Xử lý form (demo - chỉ hiển thị thông báo, không gửi đi máy chủ)
+    function handleSubmit(form){
+      const msg = document.getElementById('form-msg');
+      msg.style.display = 'block';
+      form.reset();
+      setTimeout(()=>{ msg.style.display='none' }, 4000);
+    }
+
+    // Smooth scroll cho liên kết nội bộ
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        if(id.length>1){
+          const el = document.querySelector(id);
+          if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+        }
+      });
+    });
+
+    // SCROLL REVEAL: slide-in từ trái/phải/lên khi card xuất hiện trong viewport
+    (function(){
+      const targets = document.querySelectorAll('.reveal-base');
+      if('IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(entry=>{
+            if(entry.isIntersecting){
+              entry.target.classList.add('visible');
+              io.unobserve(entry.target); // chỉ reveal 1 lần
+            }
+          });
+        }, {root:null, rootMargin:"0px 0px -10% 0px", threshold:0.12});
+        targets.forEach(el=>io.observe(el));
+      } else {
+        // Fallback: nếu không hỗ trợ IO, hiển thị luôn
+        targets.forEach(el=>el.classList.add('visible'));
+      }
+    })();
+  </script>
+</body>
+</html>
