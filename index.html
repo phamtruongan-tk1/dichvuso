@@ -14,7 +14,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#0b1020;--card:#0f172a;--text:#e5e7eb;--muted:#a5b4fc;--brand:#22d3ee;--accent:#38bdf8;--shadow:0 10px 30px rgba(0,0,0,.35);--radius:18px}
+    :root{--bg:#fafbfc;--card:#ffffff;--text:#1a202c;--muted:#718096;--brand:#0ea5e9;--accent:#3b82f6;--shadow:0 4px 25px rgba(0,0,0,.08);--radius:18px;--border:#e2e8f0;--nav-bg:rgba(255,255,255,.85);--hero-card:#f7fafc;--subtitle:#4a5568;--pill-bg:#edf2f7;--pill-text:#2d3748}
+    [data-theme="dark"]{--bg:#0b1020;--card:#0f172a;--text:#e5e7eb;--muted:#a5b4fc;--brand:#22d3ee;--accent:#38bdf8;--shadow:0 10px 30px rgba(0,0,0,.35);--border:#1f2937;--nav-bg:rgba(11,16,32,.6);--hero-card:#0b1328;--subtitle:#c7d2fe;--pill-bg:#0e172a;--pill-text:#c7d2fe}
     *{box-sizing:border-box}
     html,body{height:100%}
     body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:radial-gradient(1200px 600px at 10% -10%,#0ea5e930,transparent 60%),radial-gradient(1000px 600px at 110% 10%,#38bdf820,transparent 60%),var(--bg);color:var(--text);line-height:1.6}
@@ -22,38 +23,40 @@
     img{max-width:100%;display:block}
     .container{width:min(1120px,92vw);margin:0 auto}
 
-    header{position:sticky;top:0;backdrop-filter:blur(8px);background:rgba(11,16,32,.6);border-bottom:1px solid #1f2937;z-index:50}
+    header{position:sticky;top:0;backdrop-filter:blur(8px);background:var(--nav-bg);border-bottom:1px solid var(--border);z-index:50}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
     .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.3px}
     .logo{width:36px;height:36px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--accent));box-shadow:var(--shadow)}
-    .nav a.btn{padding:10px 16px;border:1px solid #1f334d;border-radius:12px;transition:.2s;font-weight:600}
-    .nav a.btn:hover{transform:translateY(-1px);border-color:#2c4a77}
+    .nav a.btn{padding:10px 16px;border:1px solid var(--border);border-radius:12px;transition:.2s;font-weight:600}
+    .nav a.btn:hover{transform:translateY(-1px);border-color:var(--accent)}
     .lang-switch{display:flex;gap:8px;align-items:center;margin-left:8px}
-    .lang-btn{padding:8px 10px;border-radius:10px;border:1px solid #244061;background:rgba(56,189,248,.07);color:#dbeafe;font-weight:700;cursor:pointer}
-    .lang-btn.active{background:linear-gradient(135deg,var(--brand),var(--accent));color:#0b1020}
+    .lang-btn{padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:rgba(56,189,248,.07);color:var(--muted);font-weight:700;cursor:pointer}
+    .lang-btn.active{background:linear-gradient(135deg,var(--brand),var(--accent));color:#ffffff}
+    .theme-toggle{padding:8px 10px;border-radius:10px;border:1px solid var(--border);background:rgba(56,189,248,.07);color:var(--muted);font-weight:700;cursor:pointer;margin-left:8px}
+    .theme-toggle:hover{background:rgba(56,189,248,.15)}
 
     .hero{padding:72px 0 36px}
     .hero-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
-    .badge{display:inline-flex;align-items:center;gap:10px;padding:6px 12px;border-radius:999px;background:rgba(34,211,238,.12);border:1px solid rgba(56,189,248,.25);color:#d1fbff;font-weight:600}
+    .badge{display:inline-flex;align-items:center;gap:10px;padding:6px 12px;border-radius:999px;background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.2);color:var(--brand);font-weight:600}
     .title{font-size:clamp(28px,4.2vw,54px);line-height:1.1;margin:16px 0 10px;font-weight:800}
-    .subtitle{color:#c7d2fe;font-weight:500;font-size:clamp(15px,1.6vw,18px)}
+    .subtitle{color:var(--subtitle);font-weight:500;font-size:clamp(15px,1.6vw,18px)}
     .cta{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
     .btn{padding:14px 18px;border-radius:14px;font-weight:700;border:1px solid transparent;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:10px}
-    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--accent));color:#0b1020}
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--accent));color:#ffffff}
     .btn-primary:hover{filter:brightness(1.05);transform:translateY(-1px)}
-    .btn-ghost{background:rgba(59,130,246,.08);border-color:#1f334d}
+    .btn-ghost{background:rgba(59,130,246,.08);border-color:var(--border)}
     .btn-ghost:hover{background:rgba(59,130,246,.15)}
 
-    .hero-card{background:linear-gradient(180deg,#0b1328 0%,#0a1224 100%);border:1px solid #1f2937;padding:24px;border-radius:var(--radius);box-shadow:var(--shadow)}
-    .check{display:flex;align-items:center;gap:10px;margin:8px 0;color:#cbd5e1}
+    .hero-card{background:var(--hero-card);border:1px solid var(--border);padding:24px;border-radius:var(--radius);box-shadow:var(--shadow)}
+    .check{display:flex;align-items:center;gap:10px;margin:8px 0;color:var(--muted)}
     .check i{width:22px;height:22px;border-radius:8px;display:grid;place-items:center;background:rgba(52,211,153,.2);color:#10b981;font-weight:900}
 
     section{padding:56px 0}
     .grid{display:grid;gap:18px}
 
-    .card{background:var(--card);border:1px solid #1f2937;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease}
     .card::after{content:"";position:absolute;inset:-1px;background:radial-gradient(220px 120px at 80% -20%,rgba(56,189,248,.22),transparent 60%),radial-gradient(220px 120px at -10% 120%,rgba(34,211,238,.18),transparent 60%);opacity:0;transition:opacity .22s ease;pointer-events:none}
-    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5);border-color:rgba(56,189,248,.55);background:linear-gradient(180deg,#0b1328 0%,#0a1224 100%)}
+    .card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:rgba(56,189,248,.55)}
     .card:hover::after{opacity:1}
     .icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(34,211,238,.18);transition:transform .22s ease}
     .card:hover .icon{transform:scale(1.06) translateY(-2px)}
@@ -63,14 +66,14 @@
     .pricing{grid-template-columns:repeat(3,1fr)}
     .price{display:flex;align-items:flex-end;gap:6px;margin:10px 0}
     .price .big{font-size:38px;font-weight:800}
-    .price .per{color:#c7d2fe}
-    .pill{display:inline-block;padding:6px 10px;border:1px solid #1f2937;background:#0e172a;border-radius:999px;font-weight:600;color:#c7d2fe}
+    .price .per{color:var(--muted)}
+    .pill{display:inline-block;padding:6px 10px;border:1px solid var(--border);background:var(--pill-bg);border-radius:999px;font-weight:600;color:var(--pill-text)}
     .best{outline:2px solid rgba(56,189,248,.35)}
 
-    details{background:#0d1429;border:1px solid #1f2937;border-radius:12px;padding:14px 16px}
+    details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
     summary{cursor:pointer;font-weight:700}
 
-    footer{padding:36px 0 56px;border-top:1px solid #1f2937;color:#cbd5e1}
+    footer{padding:36px 0 56px;border-top:1px solid var(--border);color:var(--muted)}
 
     .floating-contact{position:fixed;right:18px;bottom:18px;display:flex;flex-direction:column;gap:12px;z-index:9999}
     .floating-contact a{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--brand),var(--accent));color:#0b1020;font-weight:800;padding:14px 18px;border-radius:999px;box-shadow:0 8px 22px rgba(0,0,0,.45);transition:transform .15s ease,box-shadow .15s ease;animation:pulse 2.2s infinite;letter-spacing:.2px}
@@ -87,7 +90,7 @@
     @media (max-width:620px){.features,.pricing,.steps{grid-template-columns:1fr}.nav a.hide-sm{display:none}.floating-contact a{padding:12px 14px;font-size:14px}}
 
     label{display:block;font-weight:600;margin:10px 0 6px}
-    .in{width:100%;background:#0b1328;border:1px solid #20304a;color:#e5e7eb;padding:12px 12px;border-radius:12px;outline:none}
+    .in{width:100%;background:var(--card);border:1px solid var(--border);color:var(--text);padding:12px 12px;border-radius:12px;outline:none}
     .in:focus{border-color:#38bdf8;box-shadow:0 0 0 3px rgba(56,189,248,.2)}
     textarea.in{resize:vertical}
   </style>
@@ -108,6 +111,7 @@
           <button class="lang-btn" id="btn-vi">VI</button>
           <button class="lang-btn" id="btn-en">EN</button>
         </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">🌙</button>
       </nav>
     </div>
   </header>
@@ -139,10 +143,52 @@
     </div>
   </section>
 
+  <section id="pricing">
+    <div class="container">
+      <h2 style="margin:0 0 12px;font-size:28px" class="reveal-base reveal-left" data-i18n="pricing.title">Bảng giá tham khảo</h2>
+      <p style="color:var(--subtitle);margin-top:0" class="reveal-base reveal-left" data-i18n="pricing.subtitle">Giá có thể thay đổi theo thời điểm khuyến mãi. Liên hệ để có giá tốt nhất.</p>
+      <div class="grid pricing">
+        <article class="card reveal-base reveal-left">
+          <span class="pill" data-i18n="pricing.c1.badge">Dùng thử</span>
+          <h3 data-i18n="pricing.c1.title">1 tháng</h3>
+          <div class="price"><span class="big">69k</span><span class="per" data-i18n="pricing.per_month">/tháng</span></div>
+          <ul style="padding-left:18px;color:var(--muted)">
+            <li data-i18n="pricing.c1.l1">Nâng cấp chính chủ</li>
+            <li data-i18n="pricing.c1.l2">Hỗ trợ cơ bản</li>
+            <li data-i18n="pricing.c1.l3">Thanh toán sau khi thành công</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost" style="width:100%;justify-content:center" data-i18n="pricing.c1.cta">Đăng ký</a>
+        </article>
+        <article class="card best reveal-base reveal-up">
+          <span class="pill" style="background:rgba(34,211,238,.14);border-color:rgba(56,189,248,.4)" data-i18n="pricing.c2.badge">Khuyến nghị</span>
+          <h3 data-i18n="pricing.c2.title">3 tháng</h3>
+          <div class="price"><span class="big">149k</span><span class="per" data-i18n="pricing.per_3m">/3 tháng</span></div>
+          <ul style="padding-left:18px;color:var(--muted)">
+            <li data-i18n="pricing.c2.l1">Ưu tiên xử lý</li>
+            <li data-i18n="pricing.c2.l2">Bảo hành theo gói</li>
+            <li data-i18n="pricing.c2.l3">Hỗ trợ kỹ thuật 1-1</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center" data-i18n="pricing.c2.cta">Đăng ký ngay</a>
+        </article>
+        <article class="card reveal-base reveal-right">
+          <span class="pill" data-i18n="pricing.c3.badge">Doanh nghiệp</span>
+          <h3 data-i18n="pricing.c3.title">Tuỳ chỉnh</h3>
+          <div class="price"><span class="big" data-i18n="pricing.c3.price">Liên hệ</span></div>
+          <ul style="padding-left:18px;color:var(--muted)">
+            <li data-i18n="pricing.c3.l1">Nâng cấp số lượng lớn</li>
+            <li data-i18n="pricing.c3.l2">Hoá đơn & hợp đồng</li>
+            <li data-i18n="pricing.c3.l3">Hỗ trợ tích hợp quy trình</li>
+          </ul>
+          <a href="#contact" class="btn btn-ghost" style="width:100%;justify-content:center" data-i18n="pricing.c3.cta">Nhận báo giá</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section id="features">
     <div class="container">
       <h2 style="margin:0 0 12px;font-size:28px" class="reveal-base reveal-left" data-i18n="features.title">Tính năng nổi bật</h2>
-      <p style="color:#c7d2fe;margin-top:0" class="reveal-base reveal-left" data-i18n="features.subtitle">Những gì bạn nhận được khi nâng cấp ChatGPT Plus.</p>
+      <p style="color:var(--subtitle);margin-top:0" class="reveal-base reveal-left" data-i18n="features.subtitle">Những gì bạn nhận được khi nâng cấp ChatGPT Plus.</p>
       <div class="grid features" role="list">
         <article class="card reveal-base reveal-left" role="listitem">
           <div class="icon">⚡</div>
@@ -166,7 +212,7 @@
   <section id="how">
     <div class="container">
       <h2 style="margin:0 0 12px;font-size:28px" class="reveal-base reveal-left" data-i18n="how.title">Quy trình hoạt động</h2>
-      <p style="color:#c7d2fe;margin-top:0" class="reveal-base reveal-left" data-i18n="how.subtitle">Đơn giản trong 4 bước.</p>
+      <p style="color:var(--subtitle);margin-top:0" class="reveal-base reveal-left" data-i18n="how.subtitle">Đơn giản trong 4 bước.</p>
       <div class="grid steps">
         <div class="card step reveal-base reveal-left">
           <div class="num" style="width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:rgba(56,189,248,.25);color:#e0f2fe;font-weight:800;margin-bottom:10px">1</div>
@@ -192,53 +238,11 @@
     </div>
   </section>
 
-  <section id="pricing">
-    <div class="container">
-      <h2 style="margin:0 0 12px;font-size:28px" class="reveal-base reveal-left" data-i18n="pricing.title">Bảng giá tham khảo</h2>
-      <p style="color:#c7d2fe;margin-top:0" class="reveal-base reveal-left" data-i18n="pricing.subtitle">Giá có thể thay đổi theo thời điểm khuyến mãi. Liên hệ để có giá tốt nhất.</p>
-      <div class="grid pricing">
-        <article class="card reveal-base reveal-left">
-          <span class="pill" data-i18n="pricing.c1.badge">Dùng thử</span>
-          <h3 data-i18n="pricing.c1.title">1 tháng</h3>
-          <div class="price"><span class="big">69k</span><span class="per" data-i18n="pricing.per_month">/tháng</span></div>
-          <ul style="padding-left:18px;color:#cdd5f6">
-            <li data-i18n="pricing.c1.l1">Nâng cấp chính chủ</li>
-            <li data-i18n="pricing.c1.l2">Hỗ trợ cơ bản</li>
-            <li data-i18n="pricing.c1.l3">Thanh toán sau khi thành công</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost" style="width:100%;justify-content:center" data-i18n="pricing.c1.cta">Đăng ký</a>
-        </article>
-        <article class="card best reveal-base reveal-up">
-          <span class="pill" style="background:rgba(34,211,238,.14);border-color:rgba(56,189,248,.4)" data-i18n="pricing.c2.badge">Khuyến nghị</span>
-          <h3 data-i18n="pricing.c2.title">3 tháng</h3>
-          <div class="price"><span class="big">149k</span><span class="per" data-i18n="pricing.per_3m">/3 tháng</span></div>
-          <ul style="padding-left:18px;color:#cdd5f6">
-            <li data-i18n="pricing.c2.l1">Ưu tiên xử lý</li>
-            <li data-i18n="pricing.c2.l2">Bảo hành theo gói</li>
-            <li data-i18n="pricing.c2.l3">Hỗ trợ kỹ thuật 1-1</li>
-          </ul>
-          <a href="#contact" class="btn btn-primary" style="width:100%;justify-content:center" data-i18n="pricing.c2.cta">Đăng ký ngay</a>
-        </article>
-        <article class="card reveal-base reveal-right">
-          <span class="pill" data-i18n="pricing.c3.badge">Doanh nghiệp</span>
-          <h3 data-i18n="pricing.c3.title">Tuỳ chỉnh</h3>
-          <div class="price"><span class="big" data-i18n="pricing.c3.price">Liên hệ</span></div>
-          <ul style="padding-left:18px;color:#cdd5f6">
-            <li data-i18n="pricing.c3.l1">Nâng cấp số lượng lớn</li>
-            <li data-i18n="pricing.c3.l2">Hoá đơn & hợp đồng</li>
-            <li data-i18n="pricing.c3.l3">Hỗ trợ tích hợp quy trình</li>
-          </ul>
-          <a href="#contact" class="btn btn-ghost" style="width:100%;justify-content:center" data-i18n="pricing.c3.cta">Nhận báo giá</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <section>
     <div class="container grid" style="grid-template-columns:repeat(3,1fr);gap:14px">
-      <div class="card reveal-base reveal-left" style="display:flex;align-items:center;gap:12px"><span class="icon">🕒</span><div><strong data-i18n="trust.1.t">Xử lý nhanh</strong><br><span style="color:#c7d2fe" data-i18n="trust.1.s">Trong giờ làm việc</span></div></div>
-      <div class="card reveal-base reveal-up" style="display:flex;align-items:center;gap:12px"><span class="icon">🧾</span><div><strong data-i18n="trust.2.t">Minh bạch</strong><br><span style="color:#c7d2fe" data-i18n="trust.2.s">Hoá đơn rõ ràng</span></div></div>
-      <div class="card reveal-base reveal-right" style="display:flex;align-items:center;gap:12px"><span class="icon">🤝</span><div><strong data-i18n="trust.3.t">Hỗ trợ tận tâm</strong><br><span style="color:#c7d2fe" data-i18n="trust.3.s">7 ngày/tuần</span></div></div>
+      <div class="card reveal-base reveal-left" style="display:flex;align-items:center;gap:12px"><span class="icon">🕒</span><div><strong data-i18n="trust.1.t">Xử lý nhanh</strong><br><span style="color:var(--muted)" data-i18n="trust.1.s">Trong giờ làm việc</span></div></div>
+      <div class="card reveal-base reveal-up" style="display:flex;align-items:center;gap:12px"><span class="icon">🧾</span><div><strong data-i18n="trust.2.t">Minh bạch</strong><br><span style="color:var(--muted)" data-i18n="trust.2.s">Hoá đơn rõ ràng</span></div></div>
+      <div class="card reveal-base reveal-right" style="display:flex;align-items:center;gap:12px"><span class="icon">🤝</span><div><strong data-i18n="trust.3.t">Hỗ trợ tận tâm</strong><br><span style="color:var(--muted)" data-i18n="trust.3.s">7 ngày/tuần</span></div></div>
     </div>
   </section>
 
@@ -272,7 +276,7 @@
         <div class="grid" style="grid-template-columns:1.2fr .8fr;gap:22px">
           <div>
             <h2 style="margin:0 0 10px;font-size:26px" data-i18n="contact.title">Liên hệ đăng ký</h2>
-            <p style="color:#c7d2fe" data-i18n="contact.subtitle">Điền thông tin, chúng tôi sẽ phản hồi nhanh trong giờ làm việc.</p>
+            <p style="color:var(--subtitle)" data-i18n="contact.subtitle">Điền thông tin, chúng tôi sẽ phản hồi nhanh trong giờ làm việc.</p>
             <form onsubmit="event.preventDefault(); handleSubmit(this)">
               <label data-i18n="form.name">Họ & tên</label>
               <input name="name" required class="in" data-i18n-placeholder="form.name_ph" placeholder="VD: Nguyễn Văn A" />
@@ -293,9 +297,9 @@
           <aside>
             <div class="card reveal-base reveal-right" style="height:100%">
               <h3 style="margin-top:0" data-i18n="contact.info">Thông tin liên hệ</h3>
-              <p style="color:#c7d2fe;margin:0">Zalo: <strong>0123.456.789</strong><br>Telegram: <strong>@yourhandle</strong><br>Email: <strong>support@example.com</strong></p>
-              <hr style="border-color:#1f2937;margin:16px 0">
-              <p style="color:#9ca3af;font-size:14px" data-i18n="contact.note">Lưu ý: Đây là trang giới thiệu dịch vụ. Chúng tôi không đại diện cho OpenAI. Điều khoản sử dụng của OpenAI luôn được tôn trọng.</p>
+              <p style="color:var(--muted);margin:0">Zalo: <strong>0123.456.789</strong><br>Telegram: <strong>@yourhandle</strong><br>Email: <strong>support@example.com</strong></p>
+              <hr style="border-color:var(--border);margin:16px 0">
+              <p style="color:var(--muted);font-size:14px" data-i18n="contact.note">Lưu ý: Đây là trang giới thiệu dịch vụ. Chúng tôi không đại diện cho OpenAI. Điều khoản sử dụng của OpenAI luôn được tôn trọng.</p>
             </div>
           </aside>
         </div>
@@ -316,6 +320,41 @@
   </div>
 
   <script>
+    // Theme management
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const defaultTheme = 'light'; // Default to light mode
+      const theme = savedTheme || defaultTheme;
+      
+      document.documentElement.setAttribute('data-theme', theme);
+      updateThemeToggle(theme);
+      
+      if (!savedTheme) {
+        localStorage.setItem('theme', defaultTheme);
+      }
+    }
+    
+    function updateThemeToggle(theme) {
+      const toggle = document.getElementById('theme-toggle');
+      toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+      toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      updateThemeToggle(newTheme);
+    }
+    
+    // Initialize theme on page load
+    initTheme();
+    
+    // Add event listener for theme toggle
+    document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
